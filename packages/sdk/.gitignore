@@ -1,0 +1,11 @@
+# Build results
+dist/
+dist-esm/
+dist-test/
+dist-browser/
+temp/
+types/
+coverage-browser/
+test-results*.xml
+.env
+node_modules/

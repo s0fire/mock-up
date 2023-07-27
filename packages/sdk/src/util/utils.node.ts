@@ -1,0 +1,69 @@
+import { ConfidentialClientApplication, NodeAuthOptions } from "@azure/msal-node";
+import {
+  AppCredentialAuthConfig,
+  AuthenticationConfiguration,
+  OnBehalfOfCredentialAuthConfig,
+} from "../models/configuration";
+import { ClientCertificate, getAuthority } from "./utils";
+import { internalLogger } from "./logger";
+import { ErrorWithCode, ErrorCode } from "../core/errors";
+import { createHash } from "crypto";
+
+/**
+ * @internal
+ */
+export function createConfidentialClientApplication(
+  authentication:
+    | AuthenticationConfiguration
+    | AppCredentialAuthConfig
+    | OnBehalfOfCredentialAuthConfig
+): ConfidentialClientApplication {
+  const authority = getAuthority(authentication.authorityHost!, authentication.tenantId!);
+  const clientCertificate: ClientCertificate | undefined = parseCertificate(
+    authentication.certificateContent
+  );
+
+  const auth: NodeAuthOptions = {
+    clientId: authentication.clientId!,
+    authority: authority,
+  };
+
+  if (clientCertificate) {
+    auth.clientCertificate = clientCertificate;
+  } else {
+    auth.clientSecret = authentication.clientSecret;
+  }
+
+  return new ConfidentialClientApplication({
+    auth,
+  });
+}
+
+/**
+ * @internal
+ */
+export function parseCertificate(
+  certificateContent: string | undefined
+): ClientCertificate | undefined {
+  if (!certificateContent) {
+    return undefined;
+  }
+
+  const certificatePattern =
+    /(-+BEGIN CERTIFICATE-+)(\n\r?|\r\n?)([A-Za-z0-9+/\n\r]+=*)(\n\r?|\r\n?)(-+END CERTIFICATE-+)/;
+  const match = certificatePattern.exec(certificateContent);
+  if (!match) {
+    const errorMsg = "The certificate content does not contain a PEM-encoded certificate.";
+    internalLogger.error(errorMsg);
+    throw new ErrorWithCode(errorMsg, ErrorCode.InvalidCertificate);
+  }
+  const thumbprint = createHash("sha1")
+    .update(Buffer.from(match[3], "base64"))
+    .digest("hex")
+    .toUpperCase();
+
+  return {
+    thumbprint: thumbprint,
+    privateKey: certificateContent,
+  };
+}

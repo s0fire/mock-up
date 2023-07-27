@@ -1,0 +1,5 @@
+types/*
+dist*/*
+review
+temp
+*.opts

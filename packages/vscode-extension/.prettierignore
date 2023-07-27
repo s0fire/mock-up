@@ -1,0 +1,6 @@
+**/*.d.ts
+coverage/
+.nyc_output/
+.prettierignore
+syntaxes/*.tmLanguage
+test/migration/data

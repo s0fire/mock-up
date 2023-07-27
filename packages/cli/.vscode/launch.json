@@ -1,0 +1,118 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch new command (non-interactive)",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/cli.js",
+      "args": ["new", "--interactive", "false"],
+      "outFiles": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch provision command (non-interactive)",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/cli.js",
+      "args": ["provision", "--folder", "../../../teams/app01"],
+      "outFiles": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch config command (non-interactive)",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/cli.js",
+      "args": ["config", "set", "telemetry", "on"],
+      "outFiles": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch permission status command (non-interactive)",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/cli.js",
+      "args": ["permission", "status", "--folder", "../../../teams/app001"],
+      "env": {
+        "TEAMSFX_REMOTE_COL": "true"
+      },
+      "outFiles": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch permission grant command (non-interactive)",
+      "skipFiles": ["<node_internals>/**"],
+      "program": "${workspaceFolder}/cli.js",
+      "args": [
+        "permission",
+        "grant",
+        "--folder",
+        "../../../../Test/collaborate",
+        "--env",
+        "default",
+        "--email",
+        "email.address"
+      ],
+      "env": {
+        "TEAMSFX_INSIDER_PREVIEW": "true"
+      },
+      "outFiles": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "resolveSourceMapLocations": [
+        "${workspaceFolder}/lib/**/*.js",
+        "${workspaceFolder}/../fx-core/build/**/*.js",
+        "${workspaceFolder}/../api/build/**/*.js"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

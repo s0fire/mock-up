@@ -1,0 +1,10 @@
+**/src/generated/
+review
+**/*.yml
+**/*.yaml
+**/*.d.ts
+doc
+
+coverage/
+.nyc_output/
+.prettierignore

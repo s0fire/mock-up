@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "M365_CLIENT_ID": "__CLIENT_ID__",
+    "M365_CLIENT_SECRET": "__CLIENT_SECRET__",
+    "ALLOWED_APP_IDS": "__ALLOWED_APP_CLIENT_ID__;00000000-0000-0000-0000-000000000000",
+    "M365_AUTHORITY_HOST": "__AUTHORITY_HOST__",
+    "M365_TENANT_ID": "__TENANT_ID__"
+  }
+}

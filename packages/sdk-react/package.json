@@ -1,0 +1,88 @@
+{
+  "name": "@microsoft/teamsfx-react",
+  "version": "3.0.0-alpha",
+  "description": "React helper functions for Microsoft TeamsFx",
+  "main": "build/cjs/index.js",
+  "module": "build/esm/index.js",
+  "types": "build/cjs/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "keywords": [
+    "teamsfx",
+    "react"
+  ],
+  "repository": "https://github.com/OfficeDev/TeamsFx",
+  "author": "Microsoft Corporation",
+  "files": [
+    "build/**/*"
+  ],
+  "scripts": {
+    "build": "rimraf build && npx tsc -p tsconfig.json && npx tsc -p tsconfig.es.json",
+    "lint:staged": "lint-staged",
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "test": "npm run test:unit",
+    "test:unit": "jest --ci --reporters=jest-junit --reporters=default --coverage --coverageDirectory='coverage' --collectCoverageFrom='src/*.{ts,tsx,js}'",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"*.{js,json}\"",
+    "format-check": "prettier --list-different \"src/**/*.ts\" \"test/**/*.ts\" \"*.{js,json}\"",
+    "check-sensitive": "npx eslint --plugin 'no-secrets' --cache --ignore-pattern 'package.json' --ignore-pattern 'package-lock.json'",
+    "precommit": "npm run check-sensitive && lint-staged"
+  },
+  "devDependencies": {
+    "@fluentui/react-components": "^9.15.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@microsoft/eslint-plugin-teamsfx": "^0.0.1",
+    "@microsoft/microsoft-graph-client": "^3.0.1",
+    "@microsoft/teams-js": "^2.0.0",
+    "@microsoft/teamsfx": "^2.1.0",
+    "@testing-library/react": "^13.4.0",
+    "@types/enzyme": "^3.10.10",
+    "@types/jest": "^29.4.0",
+    "@types/node": "^14.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.13.0",
+    "eslint": "^8.15.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-no-secrets": "^0.8.9",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "isomorphic-fetch": "^3.0.0",
+    "jest": "^29.4.0",
+    "jest-environment-jsdom": "^29.4.1",
+    "jest-junit": "^15.0.0",
+    "jwt-decode": "^3.1.2",
+    "lint-staged": "^12.3.4",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "scheduler": "^0.20.2",
+    "ts-jest": "^29.0.5",
+    "typescript": "latest"
+  },
+  "peerDependencies": {
+    "@fluentui/react-components": "^9.15.0",
+    "@microsoft/microsoft-graph-client": "^3.0.1",
+    "@microsoft/teams-js": "^2.0.0",
+    "@microsoft/teamsfx": "^2.0.0",
+    "react": ">=16.8.0 <19.0.0",
+    "react-dom": ">=16.8.0 <19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,ts,tsx}": [
+      "npx eslint --cache --fix --quiet"
+    ]
+  }
+}
